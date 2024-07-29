@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends' Birthdays</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(to left, #44b8ac,#226059);
+            padding-top: 100px;
+            
+            justify-content: space-between;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-direction: row wrap;
+            padding-left: 40px;
+        }
+        .headder{
+            padding-top: 90px;
+            justify-content: space-between;
+            padding-right: 60px;
+        }
+        .category{
+            background-color: rgb(224, 232, 239);
+            box-shadow: 0 5px 8px;
+            border-radius: 20px;
+            display: flex;
+            padding: 60px;
+            
+        }
+        .category form{
+           
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .category label{
+            font-weight: 100;
+            margin-bottom: 8px;
+    
+        }
+        .category select, 
+        .category button {
+            margin-bottom: 1px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+        }
+        .category input{
+            margin-bottom: 1px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        .category option{
+            margin-bottom: 1px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+        }
+        .category select:focus, 
+        .category input[type="text"]:focus {
+            outline: none;
+            border-color: #248e94;
+            box-shadow: 0 0 4px rgba(118, 226, 238, 0.5);
+        }
+        
+        .category button {
+            background-image: linear-gradient(to right, #06767c,#2ab9c1);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .category button:hover {
+            background-color: #19888e;
+        }
+        .result {
+            margin-top: 20px;
+            padding-bottom: 40px;
+            
+
+        }
+        
+        .results-display {
+            display: flex;
+            flex-flow: row-reverse wrap;
+            
+            gap: 10px;
+        }
+        
+        .results-item {
+            background-color: rgb(224, 232, 239);
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 130px;
+            height: 170px;
+        
+        }
+        
+    </style>
+</head>
+<body>
+    
+        <div class="category">
+            <div class = headder>
+            <h1>Friend's Birthday Reminder<br></h1></div>
+            <form id="cat" action="/cat" method="POST">
+                <label for="category">Name of friend:</label>
+                <input type="text" id = "name" name = "name" placeholder="Enter a name"><br>
+                <label for="category">Choose your friend's category:</label>
+                <select id="category" name="category">
+                    <option value="sc">--select category--</option>
+                    <option value="college friend">College friend</option>
+                    <option value="school friend">School friend</option>
+                </select><br>
+                <label for="category">Date of birth:</label>
+                <input type="text"  id = "dateofbirth" name = "dateofbirth"  placeholder="Enter date of birth"><br>
+                <label for="act" id="act" name="act">Choose Update/Add/Delete:</label>
+                <select id="act" name="act">
+                    <option value="sc">--select any action--</option>
+                    <option value="Add">Add</option>
+                    <option value="Update">Update</option>
+                    <option value="Delete">Delete</option>
+                </select><br>
+                <button type="submit" name = "result">Submit</button>
+            </form>
+           
+        </div>
+        <div class="result">
+            {% if result %}
+                <div class = "results-display">
+                    {% for res in result %}
+                      <div class="results-item">
+                        <p>Name:{{ res.name }}</p>
+                        <p>Date of birth:{{ res.dateofbirth }}</p>
+                        <p>Category: {{ res.category }}</p>
+                      </div>
+                    {% endfor %}
+                </div>
+            
+            {% endif %}
+        </div>
+    
+</body>
+</html>
+
+
+
