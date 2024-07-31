@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from pydantic import BaseModel
 from fastapi.templating import Jinja2Templates
-from typing import Annotated
+
 
 app = FastAPI()
 
